@@ -5,7 +5,8 @@
     "dev": "next dev",
     "start": "next start",
     "build": "next build && node .next/serverless/scripts/build-rss.js",
-    "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore"
+    "format": "prettier --write \"**/*.{js,jsx,json,ts,tsx,md,mdx,css,html,yml,yaml,scss,sass}\" --ignore-path .gitignore",
+    "eslint": "eslint src --ext=.jsx,.js"
   },
   "husky": {
     "hooks": {
@@ -13,9 +14,13 @@
     }
   },
   "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^4.4.1",
+    "@typescript-eslint/parser": "^4.4.1",
     "@zeit/react-jsx-parser": "^2.0.0",
     "async-sema": "^3.1.0",
     "atomize": "^1.0.26",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-plugin-react": "^7.21.4",
     "github-slugger": "^1.2.1",
     "katex": "^0.12.0",
     "next": "9.4.4",
@@ -31,6 +36,9 @@
     "@types/katex": "^0.11.0",
     "@types/node": "^13.1.2",
     "@types/react": "^16.9.17",
+    "eslint": "^7.11.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
