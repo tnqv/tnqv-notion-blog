@@ -6,22 +6,15 @@ import { StyleReset, ThemeProvider, Div } from 'atomize'
 const theme = {
   fontFamily: {
     primary:
-      '"SF Pro Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
+      '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
     secondary:
-      '"SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"',
-    code: "'Fira Mono','Roboto Mono', monospace",
+      '-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif',
+    code:
+      'Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace',
   },
   grid: {
     containerMaxWidth: {
       xl: '1184px',
-    },
-  },
-  textSize: {
-    size: {
-      display3: '48px',
-    },
-    height: {
-      display3: '56px',
     },
   },
   colors: {

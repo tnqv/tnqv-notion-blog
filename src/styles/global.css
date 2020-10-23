@@ -32,14 +32,15 @@ body {
 }
 
 body {
+  /* background-color: #f5f6fa; */
   min-height: 100vh;
-  background: var(--bg);
-  color: var(--fg);
+  /* background: var(--bg); */
+  /* color: var(--fg); */
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 
-  background-image: radial-gradient(#ddd 1px, transparent 1px),
-    radial-gradient(#ddd 1px, transparent 1px);
+  background-image: radial-gradient(rgb(212, 204, 204) 1px, transparent 1px),
+    radial-gradient(rgb(186, 231, 252) 1px, transparent 1px);
   background-position: 0 0, 25px 25px;
   background-attachment: fixed;
   background-size: 50px 50px;
@@ -360,6 +361,10 @@ code {
 footer {
   padding: 2em 0;
   text-align: center;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: 100px;
 }
 
 footer img {
@@ -373,4 +378,72 @@ footer span:nth-child(3) {
 
 footer span:nth-child(3) a {
   color: inherit;
+}
+
+/* #SpeechBubble is set as a child of #Rectangle to make positioning
+it easier. #SpeechBubble is given an absolute position so that its 
+position is relative to the #Rectangle (its parent). Its scale is 
+set to zero since it should only appear when the mouse hovers over
+#Rectangle. The 'animation-fill-mode' property is set to 'forwards' 
+so that  the scale value stays at 1 after the animation finishes, 
+otherwise  #SpeechBubble will disappear once the animation finishes. 
+The 'animation-name' property is omitted since it's going to be 
+set by jQuery instead */
+#SpeechBubble {
+  position: absolute;
+  transform-origin: 0% 100%;
+  text-align: center;
+  background-color: #5a5a5a;
+  color: white;
+  border-radius: 10px;
+  width: 120px;
+  padding: 10px;
+  left: 125px;
+  top: -15px;
+  transform: scale(0);
+  animation-fill-mode: forwards;
+  animation-name: expand-bounce;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+}
+/* We need to add a tail to the speech bubble. This is done using
+the ::before pseudo-element. The tail's size is controlled by 
+its borders. The right and bottom borders are given a transparent
+color so that the tail still retains its shape while giving the
+desired look */
+#SpeechBubble::before {
+  content: '';
+  display: block;
+  width: 0;
+  position: absolute;
+  bottom: -23px;
+  left: 5px;
+  border-style: solid;
+  border-width: 13px;
+  border-color: #5a5a5a transparent transparent #5a5a5a;
+}
+
+/* Here the scale changes from 0 to 1. To add the bounciness 
+effect, the scale is set to 1.25 midway through the animation
+to give the animation a nicer effect. */
+@keyframes expand-bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Here the scale simply goes from 1 back to 0 */
+@keyframes shrink {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
 }

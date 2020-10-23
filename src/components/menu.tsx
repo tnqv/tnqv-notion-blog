@@ -1,65 +1,85 @@
 import React, { useState } from 'react'
 import { Div, Text, Button, Icon, Input } from 'atomize'
 import FollowCard from './follow-card'
+import ExtLink from './ext-link'
+import Link from 'next/link'
 
 const buttons = [
   {
-    title: 'Search',
-    icon: 'Search',
-    bg: 'warning700',
+    title: 'Rss',
+    icon: 'Notification',
+    bg: 'warning900',
     hoverBg: 'warning600',
     color: 'white',
+    link: '/atom.xml',
   },
   {
-    title: 'Bookmark',
-    icon: 'BookmarkSolid',
-    bg: 'info700',
-    hoverBg: 'info600',
+    title: 'Github',
+    icon: 'Github',
+    bg: 'black',
+    hoverBg: 'light',
     color: 'white',
+    link: 'https://github.com/tnqv/',
   },
   {
-    title: 'Delete',
-    icon: 'DeleteSolid',
-    bg: 'danger700',
-    hoverBg: 'danger600',
+    title: 'LinkedIn',
+    icon: 'Linkedin',
+    bg: 'info800',
+    hoverBg: 'info700',
     color: 'white',
+    link: '#',
   },
   {
-    title: 'Play',
-    icon: 'Play',
-    bg: 'success700',
-    hoverBg: 'success600',
+    title: 'Twitter',
+    icon: 'Twitter',
+    bg: 'info500',
+    hoverBg: 'info300',
     color: 'white',
-  },
-  {
-    title: 'Heart',
-    icon: 'HeartSolid',
-    bg: 'danger300',
-    hoverBg: 'danger400',
-    color: 'danger700',
-  },
-  {
-    title: 'Camera',
-    icon: 'CameraSolid',
-    bg: 'info300',
-    hoverBg: 'info400',
-    color: 'info700',
-  },
-  {
-    title: 'Message',
-    icon: 'MessageSolid',
-    bg: 'success300',
-    hoverBg: 'success400',
-    color: 'success700',
-  },
-  {
-    title: 'Attachment',
-    icon: 'Attachment',
-    bg: 'info300',
-    hoverBg: 'info400',
-    color: 'info700',
+    link: 'https://twitter.com/tnqvsys',
   },
 ]
+
+const normalComponent = button => {
+  return (
+    <ExtLink href={button.link}>
+      <Button
+        h="2.5rem"
+        w="2.5rem"
+        bg={button.bg}
+        hoverBg={button.hoverBg}
+        rounded="lg"
+        m={{ r: '1rem' }}
+        shadow="2"
+        hoverShadow="4"
+      >
+        <Icon name={button.icon} size="20px" color={button.color} />
+      </Button>
+    </ExtLink>
+  )
+}
+
+const rssComponent = button => {
+  return (
+    <ExtLink
+      type="application/rss+xml"
+      title="RSS for blog posts"
+      href={button.link}
+    >
+      <Button
+        h="2.5rem"
+        w="2.5rem"
+        bg={button.bg}
+        hoverBg={button.hoverBg}
+        rounded="lg"
+        m={{ r: '1rem' }}
+        shadow="2"
+        hoverShadow="4"
+      >
+        <Icon name={button.icon} size="20px" color={button.color} />
+      </Button>
+    </ExtLink>
+  )
+}
 
 export default ({ ...rest }) => {
   const [query, setQuery] = useState('')
@@ -69,48 +89,20 @@ export default ({ ...rest }) => {
   })
 
   return (
-    <Div
-      left={{ md: '2rem', lg: '0' }}
-      w={{ xs: '100%', md: '19.5rem' }}
-      top="4.5rem"
-    >
-      <Div bg="white" shadow="4" rounded="xl" m={{ b: '0.5rem' }} p="1.5rem">
+    <Div top="4.5rem" justify="center" align="center">
+      <Div m={{ b: '0.5rem' }} p="1.5rem">
         <FollowCard />
-        <Input
-          placeholder="Search"
-          onChange={e => setQuery(e.target.value)}
-          suffix={
-            <Icon
-              name="Search"
-              size="20px"
-              cursor="pointer"
-              onClick={() => console.log('clicked')}
-              pos="absolute"
-              top="50%"
-              right="1rem"
-              transform="translateY(-50%)"
-            />
-          }
-        />
         {filterButtons.length > 0 && (
-          <Div p={{ y: '0.5rem' }}>
+          <Div d="flex" align="center" justify="center">
             {filterButtons.map(button => (
-              <Div d="flex" p={{ y: '0.4rem', x: '.2rem' }} align="center">
-                <Button
-                  h="2.5rem"
-                  w="2.5rem"
-                  bg={button.bg}
-                  hoverBg={button.hoverBg}
-                  rounded="circle"
-                  m={{ r: '1rem' }}
-                  shadow="2"
-                  hoverShadow="4"
-                >
-                  <Icon name={button.icon} size="20px" color={button.color} />
-                </Button>
-                <Text textSize="paragraph" textColor="black100">
-                  {button.title}
-                </Text>
+              <Div
+                d="inline-block"
+                p={{ y: '0.4rem', x: '.2rem' }}
+                align="center"
+              >
+                {button.title === 'Rss'
+                  ? rssComponent(button)
+                  : normalComponent(button)}
               </Div>
             ))}
           </Div>
