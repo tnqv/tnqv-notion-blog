@@ -1,11 +1,12 @@
+import { NextApiRequest, NextApiResponse } from 'next'
 import { resolve } from 'path'
-import { writeFile } from './fs-helpers'
+import { writeFile } from '../../lib/fs-helpers'
 import { renderToStaticMarkup } from 'react-dom/server'
 
-import { textBlock } from './notion/renderers'
-import getBlogIndex from './notion/getBlogIndex'
-import getNotionUsers from './notion/getNotionUsers'
-import { postIsPublished, getBlogLink } from './blog-helpers'
+import { textBlock } from '../../lib/notion/renderers'
+import getBlogIndex from '../../lib/notion/getBlogIndex'
+import getNotionUsers from '../../lib/notion/getNotionUsers'
+import { postIsPublished, getBlogLink } from '../../lib/blog-helpers'
 
 // must use weird syntax to bypass auto replacing of NODE_ENV
 process.env['NODE' + '_ENV'] = 'production'
@@ -70,7 +71,7 @@ function createRSS(blogPosts = []) {
   </feed>`
 }
 
-async function main() {
+export default async (req: NextApiRequest, res: NextApiResponse) => {
   const postsTable = await getBlogIndex(true)
   const neededAuthors = new Set<string>()
 
@@ -99,7 +100,8 @@ async function main() {
 
   const outputPath = './public/atom.xml'
   await writeFile(resolve(outputPath), createRSS(blogPosts))
-  console.log(`Atom feed file generated at \`${outputPath}\``)
+  console.log(`Cron job running feed file generated at \`${outputPath}\``)
+  res.statusCode = 200
+  res.setHeader('Content-Type', 'application/json')
+  res.end(JSON.stringify({ message: 'Cron Success' }))
 }
-
-main().catch(error => console.error(error))

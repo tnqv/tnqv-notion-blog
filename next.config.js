@@ -51,6 +51,9 @@ module.exports = {
     // we're in build mode so enable shared caching for Notion data
     process.env.USE_CACHE = 'true'
 
+    cfg.externals = cfg.externals || {}
+    cfg.externals['styletron-server'] = 'styletron-server'
+
     const originalEntry = cfg.entry
     cfg.entry = async () => {
       const entries = { ...(await originalEntry()) }

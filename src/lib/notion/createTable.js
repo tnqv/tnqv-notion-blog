@@ -17,7 +17,7 @@ async function main() {
   const pageId1 = uuid()
   const pageId2 = uuid()
   const pageId3 = uuid()
-  let existingBlockId = await getExistingexistingBlockId()
+  const existingBlockId = await getExistingexistingBlockId()
 
   const requestBody = {
     requestId: uuid(),
