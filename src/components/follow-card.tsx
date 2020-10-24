@@ -3,11 +3,18 @@ import { Div, Text, Button, Icon } from 'atomize'
 
 export default () => {
   return (
-    <Div flexGrow="1" d="flex" justify="center" align="center" flexDir="column">
+    <Div
+      flexGrow="1"
+      d="flex"
+      justify="center"
+      align="center"
+      flexDir="column"
+      m={{ b: '0.25rem' }}
+    >
       <Div
-        h="4.5rem"
-        w="4.5rem"
-        bg="gray300"
+        h="8.5rem"
+        w="8.5rem"
+        bg="gray900"
         rounded="circle"
         pos="relative"
         bgImg="/totoro-crop.png"
@@ -15,22 +22,10 @@ export default () => {
         bgPos="center"
         m={{ b: '1rem' }}
       >
-        <Div
-          pos="absolute"
-          rounded="circle"
-          right="0.25rem"
-          bottom="0.25rem"
-          bg="white"
-          shadow="2"
-          h="0.5rem"
-          w="0.5rem"
-          p="1px"
-        >
-          <Div bg="success800" rounded="circle" h="6px" w="6px" />
-        </Div>
+        <Div id="SpeechBubble">Halooooo!!!</Div>
       </Div>
       <Text
-        textSize="title"
+        textSize="heading"
         m={{ b: '0.25rem' }}
         textWeight="500"
         textAlign="center"
@@ -38,12 +33,15 @@ export default () => {
         Vu Tran
       </Text>
       <Text
-        textSize="caption"
+        textSize="subheading"
         textColor="light"
-        m={{ b: '2.5rem' }}
         textAlign="center"
+        m={{ b: '0.15rem' }}
       >
-        Sofrware Engineer
+        Passionate Software Engineer
+      </Text>
+      <Text textSize="body" textAlign="center">
+        Write blog for fun {'&'} memorizing
       </Text>
     </Div>
   )
