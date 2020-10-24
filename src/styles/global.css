@@ -447,3 +447,7 @@ to give the animation a nicer effect. */
     transform: scale(0);
   }
 }
+
+#nprogress .bar {
+  background: #868286 !important;
+}
