@@ -1,11 +1,12 @@
 import Link from 'next/link'
-import ExtLink from '../components/ext-link'
-import GitHub from '../components/svgs/github'
 import Footer from '../components/footer'
 import Layout from '../components/layout'
 import Body from '../components/body'
 import blogStyles from '../styles/blog.module.css'
 import sharedStyles from '../styles/shared.module.css'
+import Head from 'next/head'
+
+import styles from '../styles/header.module.css'
 
 import { Container, Div, Text } from 'atomize'
 
@@ -50,6 +51,18 @@ export async function getStaticProps({ preview }) {
 
 export default ({ posts = [], preview }) => (
   <Layout>
+    <header className={styles.header}>
+      <Head>
+        <title>TNQV Blog</title>
+        <meta
+          name="description"
+          content="An Next.js site using Notion for the blog"
+        />
+        <meta name="og:title" content="TNQV Blog" />
+        <meta name="twitter:site" content="@tnqvsys" />
+        <meta name="twitter:card" content="summary_large_image" />
+      </Head>
+    </header>
     <Body></Body>
     <Container>
       {preview && (

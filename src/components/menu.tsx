@@ -39,48 +39,6 @@ const buttons = [
   },
 ]
 
-const normalComponent = button => {
-  return (
-    <ExtLink href={button.link}>
-      <Button
-        h="2.5rem"
-        w="2.5rem"
-        bg={button.bg}
-        hoverBg={button.hoverBg}
-        rounded="lg"
-        m={{ r: '1rem' }}
-        shadow="2"
-        hoverShadow="4"
-      >
-        <Icon name={button.icon} size="20px" color={button.color} />
-      </Button>
-    </ExtLink>
-  )
-}
-
-const rssComponent = button => {
-  return (
-    <ExtLink
-      type="application/rss+xml"
-      title="RSS for blog posts"
-      href={button.link}
-    >
-      <Button
-        h="2.5rem"
-        w="2.5rem"
-        bg={button.bg}
-        hoverBg={button.hoverBg}
-        rounded="lg"
-        m={{ r: '1rem' }}
-        shadow="2"
-        hoverShadow="4"
-      >
-        <Icon name={button.icon} size="20px" color={button.color} />
-      </Button>
-    </ExtLink>
-  )
-}
-
 export default ({ ...rest }) => {
   const [query, setQuery] = useState('')
 
@@ -94,15 +52,30 @@ export default ({ ...rest }) => {
         <FollowCard />
         {filterButtons.length > 0 && (
           <Div d="flex" align="center" justify="center">
-            {filterButtons.map(button => (
+            {filterButtons.map((button, index) => (
               <Div
                 d="inline-block"
                 p={{ y: '0.4rem', x: '.2rem' }}
                 align="center"
+                key={index}
               >
-                {button.title === 'Rss'
-                  ? rssComponent(button)
-                  : normalComponent(button)}
+                <ExtLink
+                  href={button.link}
+                  type={button.title === 'Rss' ? 'application/rss+xml' : null}
+                >
+                  <Button
+                    h="2.5rem"
+                    w="2.5rem"
+                    bg={button.bg}
+                    hoverBg={button.hoverBg}
+                    rounded="lg"
+                    m={{ r: '1rem' }}
+                    shadow="2"
+                    hoverShadow="4"
+                  >
+                    <Icon name={button.icon} size="20px" color={button.color} />
+                  </Button>
+                </ExtLink>
               </Div>
             ))}
           </Div>
