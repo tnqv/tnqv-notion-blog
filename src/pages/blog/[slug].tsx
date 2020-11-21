@@ -256,21 +256,13 @@ const RenderPost = ({ post, redirect, preview }) => {
                 : block_height || '100%'
 
               const useWrapper = block_aspect_ratio && !block_height
-              const childStyle: CSSProperties = useWrapper
-                ? {
-                    width: '100%',
-                    height: '100%',
-                    border: 'none',
-                    position: 'absolute',
-                    top: 0,
-                  }
-                : {
-                    width,
-                    border: 'none',
-                    height: block_height,
-                    display: 'block',
-                    maxWidth: '100%',
-                  }
+              const childStyle: CSSProperties = {
+                width,
+                border: 'none',
+                height: block_height,
+                display: 'block',
+                maxWidth: '100%',
+              }
               return (
                 <img
                   key={!useWrapper ? id : undefined}
